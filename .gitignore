@@ -1,6 +1,7 @@
-/.gradle
-/.idea
-/out
+.gradle
+.idea
+out
+build
 pms3003.iml
 pms3003.ipr
 pms3003.iws
