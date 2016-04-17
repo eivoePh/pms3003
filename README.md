@@ -37,6 +37,11 @@
 ### 再次重启
     sudo reboot
 
+### 找不到/etc/inittab
+关闭串口getty服务
+    sudo systemctl stop serial-getty@ttyAMA0.service
+    sudo systemctl disable serial-getty@ttyAMA0.service
+
 ### 可安装minicom测试下串口
     sudo apt-get install minicom
     minicom -b 115200 -o -D /dev/ttyAMA0

@@ -14,6 +14,8 @@ group = 'cc.stan.raspberry'
 version = '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+apply plugin: 'application'
+mainClassName='cc.stan.raspberry.PMS3003'
 
 // In this section you declare where to find the dependencies of your project
 repositories {

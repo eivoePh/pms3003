@@ -17,6 +17,12 @@ public class PMS3003 {
     public PMS3003() {
     }
 
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("start");
+        new PMS3003().getData();
+        System.out.println("end");
+    }
+
     /**
      * 获取Data
      *
