@@ -2,30 +2,80 @@
 
 ## 材料
 * Raspberry Pi 2 model B
+* 2017-08-16-raspbian-stretch-lite.img
 * 攀藤PMS3003(G3)数字式通过颗粒物浓度传感器
 * 杜邦线若干
 * 5V电源
 * Java & Pi4J
 
 
+
+
+#######################################################################################################################
+## 烧录镜像 
+    MacOS
+    
+### download os img
+    download from: `https://www.raspberrypi.org/downloads/raspbian/`
+    使用 `2017-08-16-raspbian-stretch-lite.img`
+    [参见](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md)
+    
+### 找到磁盘号
+    接入sd卡之前后都运行`df -hl`,查看sd卡的设备名，这里是`/dev/disk2s1`
+    
+### 卸载sd卡
+
+    ```
+    sudo diskutil umount /dev/disk2s1
+    ``` 
+    
+### 写入镜像
+    **注: of部分是去掉s1并在前面加r**
+    ```
+    sudo dd bs=1m if=./2016-09-23-raspbian-jessie.img of=/dev/rdisk2
+    ```
+    等待写入完毕
+
+### 将SD卡放入RaspberryPi启动
+
+
+
+
+
+##  配置
+    sudo raspi-config
+    选 `5 InterfacingOptions` 
+    选 `P6 Serial`
+    ` login shell to be accessible over serial? `   NO
+    ` serial port hardware to be enabled ?`         Yes
+    
+
+#######################################################################################################################
+## 安装WIFI(不是必须的)
+
+
+
+
+
+#######################################################################################################################
 ## 安装Pi4J
 ### 自动安装
     curl -s get.pi4j.com | sudo bash
 
 ### 手工安装
-    wget http://get.pi4j.com/download/pi4j-1.0.deb
-    sudo dpkg -i pi4j-1.0.deb
+    wget http://get.pi4j.com/download/pi4j-1.1.deb
+    sudo dpkg -i pi4j-1.1.deb
 
 
 ## 禁用系统将串口做为tty
 > 串口默认配置是系统控制台,需要关闭这个配置才能让程序使用串口。
 
-    sudo vim /boot/cmdline.txt
-* 删除内容: `console=ttyAMA0,115200 elevator=deadline`
-* 增加内容: `rpitestmode=1`
+#    sudo vim /boot/cmdline.txt
+#* 删除内容: `console=ttyAMA0,115200 elevator=deadline`
+#* 增加内容: `rpitestmode=1`
 
 ### 修改完以后的/boot/cmdline.txt:
-    dwc_otg.lpm_enable=0 rpitestmode=1 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait
+#   dwc_otg.lpm_enable=0 rpitestmode=1 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait
 
 ### 重启
     sudo reboot

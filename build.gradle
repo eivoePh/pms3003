@@ -17,7 +17,7 @@ mavenLocal()
 }
 
 dependencies {
-    compile 'com.pi4j:pi4j-core:1.0'
+    compile 'com.pi4j:pi4j-core:1.1'
     compile 'org.slf4j:slf4j-api:1.7.13'
 
     testCompile 'junit:junit:4.12'
